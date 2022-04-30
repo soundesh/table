@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Argus</title>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href='./styles/table.css'>
+
+<link rel="stylesheet" href='./styles/tableBar.css'>
+
+</head>
+<body>
+    <article>
+    <div class="head">
+        <div class="tableheader">
+            <div class="tableleft">
+                <div >
+                    <div class="slidecontainer">
+                        <form>
+                        <input id="slider" type="range" min="25000" max="1500000" value="50000" oninput="LoanAmountChange(this.value)">
+                        <p>Value: <span id="demo"></span></p>
+                        
+                        <input id="slider1" type="range" min="0.000" max="24.000" value="0.667" step='0.001' oninput="InterstChange(this.value)">
+                        <p>Value: <span id="demo1"></span></p>
+
+                        <input id="slider2" type="range" min="12" value="17" max="60"  oninput="TenureChange(this.value)">
+                        <p>Value: <span id="demo2"></span></p>
+                        </form>
+                    </div>
+                  </div>
+            </div>
+            </div>
+            <div class="tableright">
+
+            </div>
+        </div>
+        <div class="tableBody">
+
+                <table>
+                    <tr>
+                    <th>Month</th>
+                    <th>Opening Balance</th>
+                    <th>interest of Month</th>
+                    <th>Repayments</th>
+                    <th>Closing Balance</th>
+                    </tr>
+                    <tr>
+                    <td id="Month"></td>
+                    <td id="Opening"></td>
+                    <td id="interest"></td>
+                    <td id="repayment"></td>
+                    <td id="Closing"></td>
+
+                    </tr>
+                </table>
+
+        </div>
+    </div>
+    </article>
+
+    
+<script type="text/Javascript">
+    const slider=document.getElementById('slider')
+    const output=document.getElementById('demo')
+    const  slider1=document.getElementById('slider1')
+    const output1=document.getElementById('demo1')
+    const  slider2=document.getElementById('slider2')
+    const output2=document.getElementById('demo2')
+
+    output.innerHTML=slider.value
+ slider.oninput=function (){
+     output.innerHTML=this.value
+ }
+ output1.innerHTML=(slider1.value)
+ slider1.oninput=function (){
+     output1.innerHTML=(this.value)
+ }
+ output2.innerHTML=slider2.value
+ slider2.oninput=function (){
+     output2.innerHTML=this.value
+ }
+
+ function simpleinterest(principal,rate,year) {
+
+ const array=[]
+
+    for (let i = 0; i < year; i++) {
+
+     const number1 = (principal*rate*(year/12))/100
+
+     const  payment = 5000
+
+     const open = (Number(principal)+Number(number1))-payment
+     array.push({i,principal, number1 ,payment,open})
+
+     }
+
+console.log(array)
+
+ }
+
+
+ const finder = simpleinterest(slider.value,slider1.value,slider2.value)
+ console.log(finder)
+ 
+</script>
+</body>
+</html>
